@@ -8,6 +8,7 @@ import { InjectModel } from 'nestjs-typegoose';
 import { MessageModel } from './models/message.model';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { VacancyModel } from 'src/http/models/vacancy.model';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class SenderService {
@@ -34,6 +35,7 @@ export class SenderService {
 		});
 	}
 	
+	@Cron('0 9,18 * * *')
 	async sendChanelMessage() {
 		for (const chanel of this.options.channels) {
 			try {
@@ -51,6 +53,7 @@ export class SenderService {
 		}
 	}
 
+	@Cron('0 20 * * *')
 	async sendReport() {
 		try {
 			const now = new Date();

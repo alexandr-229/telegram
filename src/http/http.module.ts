@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { HttpController } from './http.controller';
 import { HttpService } from './http.service';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { VacancyModel } from './models/vacancy.model';
@@ -15,7 +14,6 @@ import { VacancyModel } from './models/vacancy.model';
 			},
 		]),
 	],
-	controllers: [HttpController],
 	providers: [HttpService],
 	exports: [HttpService]
 })

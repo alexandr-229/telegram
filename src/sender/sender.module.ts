@@ -1,5 +1,4 @@
 import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
-import { SenderController } from './sender.controller';
 import { SenderService } from './sender.service';
 import { SENDER_MODULE_OPTIONS } from './sender.const';
 import { ISenderModuleAsyncOptions } from './types/sender.module.options';
@@ -33,7 +32,6 @@ export class SenderModule {
 					},
 				]),
 			],
-      		controllers: [SenderController],
 			providers: [SenderService, asyncOptions],
 			exports: [SenderService]
 		};
