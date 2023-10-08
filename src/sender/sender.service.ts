@@ -26,6 +26,14 @@ export class SenderService {
 		await this.messageModel.create({ link, title });
 	}
 
+	private sleep(ms: number) {
+		return new Promise<void>((res) => {
+			setTimeout(() => {
+				res();
+			}, ms);
+		});
+	}
+	
 	async sendChanelMessage() {
 		for (const chanel of this.options.channels) {
 			try {
@@ -36,8 +44,9 @@ export class SenderService {
 				}
 	
 				const message = new SenderFormatService(vacancy).getMessage();
-				await this.saveMessage(vacancy.link, vacancy.title);
 				await this.bot.telegram.sendMessage(chanel.chatId, message);
+				await this.saveMessage(vacancy.link, vacancy.title);
+				await this.sleep(3000);
 			} catch {}
 		}
 	}
