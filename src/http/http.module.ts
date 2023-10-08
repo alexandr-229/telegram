@@ -1,7 +1,21 @@
 import { Module } from '@nestjs/common';
 import { HttpController } from './http.controller';
+import { HttpService } from './http.service';
+import { TypegooseModule } from 'nestjs-typegoose';
+import { VacancyModel } from './models/vacancy.model';
 
 @Module({
-	controllers: [HttpController]
+	imports: [
+		TypegooseModule.forFeature([
+			{
+				typegooseClass: VacancyModel,
+				schemaOptions: {
+					collection: 'Vacancy',
+				},
+			},
+		]),
+	],
+	controllers: [HttpController],
+	providers: [HttpService]
 })
 export class HttpModule {}
