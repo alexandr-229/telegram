@@ -4,13 +4,14 @@ import { SenderModule } from './sender/sender.module';
 import { ConfigModule } from '@nestjs/config';
 import { getMongoConfig } from './configs/mongo.config';
 import { TypegooseModule } from 'nestjs-typegoose';
+import { getSenderConfig } from './configs/sender.config';
 
 @Module({
   imports: [
     TypegooseModule.forRootAsync(getMongoConfig()),
+    SenderModule.forRootAsync(getSenderConfig()),
     ConfigModule.forRoot(),
     HttpModule,
-    SenderModule,
   ],
 })
 export class AppModule {}

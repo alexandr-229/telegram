@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { getListBody } from './http.const';
-import { Vacancy } from './types/vacancy';
+import { FormatVacancy, Vacancy } from './types/vacancy';
 import { InjectModel } from 'nestjs-typegoose';
 import { VacancyModel } from './models/vacancy.model';
 import { ModelType } from '@typegoose/typegoose/lib/types';
@@ -41,11 +41,13 @@ export class HttpService {
 	}
 
 	private formatVacancy(vacancy: Vacancy) {
-		const result = {
+		const result: FormatVacancy = {
 			title: vacancy.title,
 			salary: [vacancy?.salary?.amountFrom, vacancy?.salary?.amountTo],
 			city: vacancy.city.name,
 			conditions: vacancy.badges.map(({ name }) => name),
+			description: vacancy.description,
+			link: `https://robota.ua/company${vacancy.company.id}/vacancy${vacancy.id}`,
 		};
 
 		return result;

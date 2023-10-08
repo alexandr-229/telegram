@@ -16,6 +16,7 @@ import { VacancyModel } from './models/vacancy.model';
 		]),
 	],
 	controllers: [HttpController],
-	providers: [HttpService]
+	providers: [HttpService],
+	exports: [HttpService]
 })
 export class HttpModule {}

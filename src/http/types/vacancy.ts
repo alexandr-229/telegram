@@ -1,3 +1,12 @@
+export interface FormatVacancy {
+	title: string;
+	salary: [number, number],
+	city: string;
+	conditions: string[];
+	description: string;
+	link: string;
+}
+
 export interface Vacancy {
 	id: string
 	schedules: Schedule[]
@@ -20,17 +29,17 @@ export interface Vacancy {
 	__typename: string
 }
   
-export interface Schedule {
+interface Schedule {
 	id: string
 	__typename: string
 }
   
-export interface Badge {
+interface Badge {
 	name: string
 	__typename: string
 }
   
-export interface Salary {
+interface Salary {
 	amount: number
 	comment: string
 	amountFrom: number
@@ -38,14 +47,14 @@ export interface Salary {
 	__typename: string
 }
   
-export interface Company {
+interface Company {
 	id: string
 	logoUrl: string
 	name: string
 	__typename: string
 }
   
-export interface City {
+interface City {
 	id: string
 	name: string
 	__typename: string
