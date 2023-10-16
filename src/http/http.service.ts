@@ -6,6 +6,7 @@ import { InjectModel } from 'nestjs-typegoose';
 import { VacancyModel } from './models/vacancy.model';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { Response } from './types/response';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class HttpService {
@@ -73,5 +74,15 @@ export class HttpService {
 		const result = this.formatVacancy(availableVacancy);
 
 		return result;
+	}
+
+	@Cron('* * * * *')
+	async startServer() {
+		try {
+			await axios.get('https://telegram-5znv.onrender.com/health-check');
+		} catch(e) {
+			Logger.error('Server is not healthy');
+			Logger.error(e);
+		}
 	}
 }
