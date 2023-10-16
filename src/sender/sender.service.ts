@@ -53,7 +53,7 @@ export class SenderService {
 		}
 	}
 
-	@Cron('* 20 * * *')
+	@Cron('0 20 * * *')
 	async sendReport() {
 		try {
 			const now = new Date();
