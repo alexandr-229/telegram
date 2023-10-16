@@ -35,7 +35,7 @@ export class SenderService {
 		});
 	}
 	
-	@Cron('0 9,18 * * *')
+	@Cron('0 6,15 * * *')
 	async sendChanelMessage() {
 		for (const chanel of this.options.channels) {
 			try {
@@ -53,7 +53,7 @@ export class SenderService {
 		}
 	}
 
-	@Cron('0 20 * * *')
+	@Cron('0 17 * * *')
 	async sendReport() {
 		try {
 			const now = new Date();
